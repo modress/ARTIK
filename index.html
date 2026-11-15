@@ -467,6 +467,51 @@
     @keyframes gRing { 0%, 100% { transform: rotate(-10deg) scale(1); } 50% { transform: rotate(10deg) scale(1.07); filter: brightness(1.15); } }
     .ga-ring { animation: gRing 2.6s ease-in-out infinite; transform-origin: 50% 60%; }
 
+    /* ===== Капча ===== */
+    #captchaOverlay { transition: opacity 0.45s ease; background: rgba(5,7,14,0.72); -webkit-backdrop-filter: blur(26px) saturate(160%); backdrop-filter: blur(26px) saturate(160%); }
+    #captchaCard { width: 100%; max-width: 352px; border-radius: 30px; padding: 20px; background: linear-gradient(160deg, rgba(32,41,66,0.84), rgba(14,19,32,0.92)); box-shadow: inset 0 1px 1px rgba(255,255,255,0.35), 0 30px 80px rgba(0,0,0,0.6); animation: capIn 0.5s var(--ios-spring); }
+    @keyframes capIn { from { opacity: 0; transform: translateY(16px) scale(0.96); } to { opacity: 1; transform: none; } }
+    .cap-head { display: flex; align-items: center; gap: 12px; }
+    .cap-ico { width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: linear-gradient(145deg, rgba(56,189,248,0.32), rgba(99,102,241,0.28)); border: 1px solid rgba(255,255,255,0.22); box-shadow: inset 0 1px 1px rgba(255,255,255,0.35); }
+    .cap-eyebrow { font-size: 10.5px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(186,230,253,0.8); }
+    .cap-title { font-size: 18px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.15; color: #fff; margin-top: 2px; }
+    .cap-refresh { width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); color: rgba(255,255,255,0.8); cursor: pointer; transition: transform 0.5s var(--ios-spring), background 0.2s; }
+    .cap-refresh:hover { background: rgba(255,255,255,0.14); }
+    .cap-refresh:active { transform: rotate(180deg) scale(0.92); }
+    .cap-hint { font-size: 12.5px; line-height: 1.35; color: rgba(255,255,255,0.58); margin: 12px 2px 14px; min-height: 17px; transition: color 0.2s; }
+    .cap-hint.err { color: #fda4af; }
+    .cap-panel { border-radius: 20px; padding: 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); }
+    .cap-tile { position: relative; display: flex; align-items: center; justify-content: center; min-height: 56px; border-radius: 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.13); color: #fff; font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; cursor: pointer; user-select: none; -webkit-user-select: none; transition: transform 0.25s var(--ios-spring), background 0.2s, border-color 0.2s, box-shadow 0.2s; }
+    .cap-tile:hover { background: rgba(255,255,255,0.1); }
+    .cap-tile:active { transform: scale(0.94); }
+    .cap-tile.sel { background: rgba(56,189,248,0.16); border-color: rgba(125,211,252,0.75); box-shadow: 0 0 0 3px rgba(56,189,248,0.14); }
+    .cap-tile.sel::after { content: ''; position: absolute; top: 5px; right: 5px; width: 15px; height: 15px; border-radius: 50%; background: #38bdf8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.3l2.4 2.4 4.6-5' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 10px no-repeat; }
+    .cap-tile.ok { background: rgba(16,185,129,0.2); border-color: rgba(110,231,183,0.7); color: #a7f3d0; cursor: default; }
+    .cap-tile svg { pointer-events: none; }
+    .cap-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 50px; margin-top: 14px; border-radius: 16px; background: linear-gradient(180deg, #ffffff, #dbe7f5); color: #0b1324; font-weight: 800; font-size: 15px; box-shadow: 0 10px 24px rgba(255,255,255,0.14), inset 0 -1px 0 rgba(0,0,0,0.08); cursor: pointer; transition: transform 0.2s var(--ios-spring); }
+    .cap-btn:active { transform: scale(0.97); }
+    .cap-input { width: 100%; height: 52px; margin-top: 12px; border-radius: 16px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); color: #fff; font-size: 20px; font-weight: 700; letter-spacing: 0.35em; text-indent: 0.35em; text-align: center; text-transform: uppercase; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+    .cap-input:focus { border-color: rgba(125,211,252,0.8); box-shadow: 0 0 0 3px rgba(56,189,248,0.18); }
+    .cap-input::placeholder { color: rgba(255,255,255,0.28); letter-spacing: 0.2em; }
+    .cap-range { -webkit-appearance: none; appearance: none; width: 100%; height: 28px; background: transparent; margin-top: 8px; outline: none; }
+    .cap-range::-webkit-slider-runnable-track { height: 6px; border-radius: 99px; background: linear-gradient(90deg, #38bdf8 var(--p, 0%), rgba(255,255,255,0.14) var(--p, 0%)); }
+    .cap-range::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; margin-top: -10px; border-radius: 50%; background: #fff; border: 0; box-shadow: 0 3px 10px rgba(0,0,0,0.45), 0 0 0 4px rgba(56,189,248,0.25); }
+    .cap-range::-moz-range-track { height: 6px; border-radius: 99px; background: rgba(255,255,255,0.14); }
+    .cap-range::-moz-range-progress { height: 6px; border-radius: 99px; background: #38bdf8; }
+    .cap-range::-moz-range-thumb { width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 0; box-shadow: 0 3px 10px rgba(0,0,0,0.45); }
+    .cap-expr { font-size: 38px; font-weight: 300; letter-spacing: -0.02em; text-align: center; color: #fff; font-variant-numeric: tabular-nums; padding: 6px 0; }
+    .cap-expr b { font-weight: 700; color: #7dd3fc; }
+    .cap-chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 99px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; font-weight: 700; color: rgba(255,255,255,0.75); }
+    .cap-dots { display: flex; justify-content: center; gap: 6px; margin-bottom: 12px; }
+    .cap-dots i { width: 22px; height: 4px; border-radius: 99px; background: rgba(255,255,255,0.14); transition: background 0.25s; }
+    .cap-dots i.on { background: #38bdf8; }
+    .cap-canvas { display: block; width: 100%; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12); }
+    @keyframes capShake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-10px); } 40% { transform: translateX(9px); } 60% { transform: translateX(-6px); } 80% { transform: translateX(4px); } }
+    .cap-shake { animation: capShake 0.45s ease; }
+    @keyframes capDraw { to { stroke-dashoffset: 0; } }
+    .cap-check circle { stroke-dasharray: 151; stroke-dashoffset: 151; animation: capDraw 0.5s ease forwards; }
+    .cap-check path { stroke-dasharray: 30; stroke-dashoffset: 30; animation: capDraw 0.35s 0.35s ease forwards; }
+
     body::-webkit-scrollbar {
       width: 0px;
       background: transparent;
@@ -865,6 +910,31 @@
       <div id="modalCard" onclick="event.stopPropagation()" class="liquid-glass w-full max-w-[406px] max-h-[86vh] overflow-y-auto rounded-[32px] p-5 pb-6 space-y-4 shadow-2xl folder-view-enter" style="background: rgba(16, 22, 36, 0.92);">
         <div class="w-10 h-1 bg-white/25 rounded-full mx-auto"></div>
         <div id="modalContent"></div>
+      </div>
+    </div>
+
+    <div id="captchaOverlay" class="fixed inset-0 z-[100] flex items-center justify-center p-5">
+      <div id="captchaCard" class="liquid-glass">
+        <div class="cap-head">
+          <div class="cap-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e0f2fe" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l7.5 3v5.5c0 4.6-3.1 8.2-7.5 9.5-4.4-1.3-7.5-4.9-7.5-9.5V6z"/>
+              <path d="M8.8 12.2l2.2 2.2 4.2-4.6"/>
+            </svg>
+          </div>
+          <div class="min-w-0 flex-1">
+            <div class="cap-eyebrow">Проверка безопасности</div>
+            <h3 id="captchaTitle" class="cap-title">Загрузка</h3>
+          </div>
+          <button type="button" id="capRefresh" class="cap-refresh" aria-label="Другое задание">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 11a8 8 0 0 0-14.5-4.5M4 4v4h4"/>
+              <path d="M4 13a8 8 0 0 0 14.5 4.5M20 20v-4h-4"/>
+            </svg>
+          </button>
+        </div>
+        <p id="captchaHint" class="cap-hint"></p>
+        <div id="captchaBody"></div>
       </div>
     </div>
 
@@ -1647,6 +1717,202 @@
       }
     }
 
+    // ===== КАПЧА: появляется при каждом запуске, тип выбирается случайно =====
+    const CAPTCHA_TYPES = ['math', 'odd', 'order', 'code', 'slider', 'pick'];
+    let captchaLast = null;
+    let captchaBusy = false;
+    let captchaDone = false;
+    let captchaTimer = null;
+
+    const CAP_ARROW = `<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12h14M13 6l6 6-6 6'/></svg>`;
+
+    const CAP_SHAPES = {
+      circle: "<circle cx='12' cy='12' r='8'/>",
+      square: "<rect x='4.5' y='4.5' width='15' height='15' rx='3.5'/>",
+      triangle: "<path d='M12 4.5l8.5 14.5h-17z' stroke-linejoin='round'/>",
+      diamond: "<path d='M12 3l9 9-9 9-9-9z' stroke-linejoin='round'/>",
+      hexagon: "<path d='M12 3l7.8 4.5v9L12 21l-7.8-4.5v-9z' stroke-linejoin='round'/>",
+      star: "<path d='M12 3.2l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.5l6-.8z' stroke-linejoin='round'/>"
+    };
+
+    function capShape(name, hue, size, rot) {
+      return `<svg viewBox='0 0 24 24' width='${size}' height='${size}' style='transform:rotate(${rot || 0}deg)' fill='hsl(${hue},85%,62%)' fill-opacity='0.92' stroke='hsl(${hue},90%,84%)' stroke-width='1.1'>${CAP_SHAPES[name]}</svg>`;
+    }
+
+    function rnd(n) { return Math.floor(Math.random() * n); }
+    function shuffleArr(a) { const r = a.slice(); for (let i = r.length - 1; i > 0; i--) { const j = rnd(i + 1); [r[i], r[j]] = [r[j], r[i]]; } return r; }
+
+    function capTitle(title, hint) {
+      document.getElementById('captchaTitle').textContent = title;
+      const h = document.getElementById('captchaHint');
+      h.textContent = hint || '';
+      h.classList.remove('err');
+    }
+
+    function initCaptcha() {
+      const ov = document.getElementById('captchaOverlay');
+      if (!ov) return;
+      captchaDone = false;
+      ov.style.display = 'flex';
+      ov.style.opacity = '1';
+      document.body.style.overflow = 'hidden';
+      const rf = document.getElementById('capRefresh');
+      if (rf) rf.onclick = () => { if (!captchaDone) nextCaptcha(); };
+      nextCaptcha();
+    }
+
+    function nextCaptcha() {
+      clearTimeout(captchaTimer);
+      captchaBusy = false;
+      let t;
+      do { t = CAPTCHA_TYPES[rnd(CAPTCHA_TYPES.length)]; } while (t === captchaLast);
+      captchaLast = t;
+      const el = document.getElementById('captchaBody');
+      el.innerHTML = '';
+      captchaBuilders[t](el);
+    }
+
+    function captchaFail(msg) {
+      if (captchaBusy) return;
+      captchaBusy = true;
+      const card = document.getElementById('captchaCard');
+      card.classList.remove('cap-shake'); void card.offsetWidth; card.classList.add('cap-shake');
+      if (navigator.vibrate) navigator.vibrate([30, 40, 30]);
+      const h = document.getElementById('captchaHint');
+      h.textContent = (msg || 'Неверно') + '. Загружаем другое задание…';
+      h.classList.add('err');
+      captchaTimer = setTimeout(nextCaptcha, 900);
+    }
+
+    function captchaPass() {
+      if (captchaBusy) return;
+      captchaBusy = true;
+      captchaDone = true;
+      playTactileFeedback('confirm');
+      capTitle('Проверка пройдена', 'Добро пожаловать');
+      document.getElementById('captchaBody').innerHTML = `<div class='cap-panel' style='display:flex;justify-content:center;padding:26px 0'><svg class='cap-check' width='72' height='72' viewBox='0 0 52 52' fill='none' stroke='#34d399' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><circle cx='26' cy='26' r='24'/><path d='M15 27l7.5 7.5L37.5 19'/></svg></div>`;
+      const ov = document.getElementById('captchaOverlay');
+      setTimeout(() => { ov.style.opacity = '0'; }, 700);
+      setTimeout(() => { ov.style.display = 'none'; document.body.style.overflow = ''; }, 1200);
+    }
+
+    const captchaBuilders = {
+      math(el) {
+        const op = ['+', '−', '×'][rnd(3)];
+        let a, b, ans;
+        if (op === '+') { a = 10 + rnd(40); b = 10 + rnd(40); ans = a + b; }
+        else if (op === '−') { a = 30 + rnd(50); b = 10 + rnd(25); ans = a - b; }
+        else { a = 3 + rnd(8); b = 3 + rnd(8); ans = a * b; }
+        const opts = new Set([ans]);
+        while (opts.size < 4) { const v = ans + (rnd(9) + 1) * (rnd(2) ? 1 : -1); if (v > 0) opts.add(v); }
+        capTitle('Решите пример', 'Выберите правильный ответ');
+        el.innerHTML = `<div class='cap-panel'><div class='cap-expr'>${a} <b>${op}</b> ${b}</div></div><div class='grid grid-cols-2 gap-2.5' style='margin-top:12px'>${shuffleArr([...opts]).map(v => `<button type='button' class='cap-tile' data-v='${v}'>${v}</button>`).join('')}</div>`;
+        el.querySelectorAll('.cap-tile').forEach(btn => btn.onclick = () => {
+          playTactileFeedback('tap');
+          if (+btn.dataset.v === ans) captchaPass(); else captchaFail('Неверный ответ');
+        });
+      },
+
+      odd(el) {
+        const pairs = [['circle', 'square'], ['triangle', 'diamond'], ['hexagon', 'circle'], ['star', 'hexagon'], ['square', 'diamond'], ['triangle', 'star']];
+        const p = shuffleArr(pairs[rnd(pairs.length)]);
+        const hue = [200, 265, 155, 25, 330][rnd(5)];
+        const idx = rnd(16);
+        capTitle('Найдите отличающуюся фигуру', 'Среди одинаковых фигур одна другая');
+        el.innerHTML = `<div class='cap-panel'><div class='grid grid-cols-4 gap-2'>${Array.from({ length: 16 }, (_, i) => `<button type='button' class='cap-tile' style='min-height:58px' data-i='${i}'>${capShape(i === idx ? p[1] : p[0], hue, 30, rnd(5) * 9)}</button>`).join('')}</div></div>`;
+        el.querySelectorAll('.cap-tile').forEach(btn => btn.onclick = () => {
+          playTactileFeedback('tap');
+          if (+btn.dataset.i === idx) captchaPass(); else captchaFail('Это не та фигура');
+        });
+      },
+
+      order(el) {
+        capTitle('Нажмите по порядку', 'Цифры от 1 до 6 по возрастанию');
+        let next = 1;
+        el.innerHTML = `<div class='cap-dots'>${[1, 2, 3, 4, 5, 6].map(() => '<i></i>').join('')}</div><div class='grid grid-cols-3 gap-2.5'>${shuffleArr([1, 2, 3, 4, 5, 6]).map(n => `<button type='button' class='cap-tile' style='min-height:62px;font-size:22px' data-n='${n}'>${n}</button>`).join('')}</div>`;
+        const dots = el.querySelectorAll('.cap-dots i');
+        el.querySelectorAll('.cap-tile').forEach(btn => btn.onclick = () => {
+          if (captchaBusy) return;
+          playTactileFeedback('tap');
+          if (+btn.dataset.n === next) {
+            btn.classList.add('ok'); btn.disabled = true;
+            dots[next - 1].classList.add('on');
+            next++;
+            if (next > 6) captchaPass();
+          } else captchaFail('Нарушен порядок');
+        });
+      },
+
+      code(el) {
+        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+        let text = '';
+        for (let i = 0; i < 5; i++) text += chars[rnd(chars.length)];
+        capTitle('Введите код', 'Символы с изображения, регистр не важен');
+        el.innerHTML = `<canvas id='capCanvas' width='520' height='150' class='cap-canvas'></canvas><input id='capInput' type='text' maxlength='5' autocomplete='off' autocapitalize='characters' spellcheck='false' class='cap-input' placeholder='•••••'><button type='button' id='capOk' class='cap-btn'>Проверить ${CAP_ARROW}</button>`;
+        const c = document.getElementById('capCanvas').getContext('2d');
+        const g = c.createLinearGradient(0, 0, 520, 150);
+        g.addColorStop(0, '#111a2e'); g.addColorStop(1, '#1a2240');
+        c.fillStyle = g; c.fillRect(0, 0, 520, 150);
+        for (let i = 0; i < 6; i++) {
+          c.strokeStyle = `hsla(${rnd(360)},70%,65%,0.45)`; c.lineWidth = 1.5 + Math.random() * 2;
+          c.beginPath(); c.moveTo(rnd(520), rnd(150)); c.bezierCurveTo(rnd(520), rnd(150), rnd(520), rnd(150), rnd(520), rnd(150)); c.stroke();
+        }
+        for (let i = 0; i < 90; i++) { c.fillStyle = `hsla(${rnd(360)},70%,75%,0.5)`; c.fillRect(rnd(520), rnd(150), 2, 2); }
+        for (let i = 0; i < text.length; i++) {
+          c.save();
+          c.translate(64 + i * 96, 78 + rnd(26) - 13);
+          c.rotate((Math.random() - 0.5) * 0.6);
+          c.font = `700 ${70 + rnd(16)}px -apple-system, "Segoe UI", sans-serif`;
+          c.fillStyle = `hsl(${200 + rnd(80)},80%,82%)`;
+          c.textAlign = 'center'; c.textBaseline = 'middle';
+          c.fillText(text[i], 0, 0);
+          c.restore();
+        }
+        const input = document.getElementById('capInput');
+        const check = () => {
+          playTactileFeedback('tap');
+          if (input.value.trim().toUpperCase() === text) captchaPass(); else captchaFail('Код указан неверно');
+        };
+        document.getElementById('capOk').onclick = check;
+        input.addEventListener('keydown', e => { if (e.key === 'Enter') check(); });
+      },
+
+      slider(el) {
+        const target = 10 + rnd(81);
+        let start;
+        do { start = rnd(101); } while (Math.abs(start - target) < 25);
+        capTitle('Установите значение', 'Допустима погрешность ±2');
+        el.innerHTML = `<div class='cap-panel'><div style='display:flex;justify-content:space-between;align-items:center'><span class='cap-chip'>Нужно: ${target}</span><span style='font-size:11.5px;color:rgba(255,255,255,0.45);font-weight:600'>0 — 100</span></div><div id='capVal' class='cap-expr' style='font-size:52px;font-weight:700;padding:14px 0 4px'>${start}</div><input id='capRange' type='range' min='0' max='100' value='${start}' class='cap-range' style='--p:${start}%'></div><button type='button' id='capOk' class='cap-btn'>Подтвердить ${CAP_ARROW}</button>`;
+        const r = document.getElementById('capRange');
+        r.oninput = () => { document.getElementById('capVal').textContent = r.value; r.style.setProperty('--p', r.value + '%'); };
+        document.getElementById('capOk').onclick = () => {
+          playTactileFeedback('tap');
+          if (Math.abs(+r.value - target) <= 2) captchaPass(); else captchaFail('Значение не совпало');
+        };
+      },
+
+      pick(el) {
+        const names = Object.keys(CAP_SHAPES);
+        const T = names[rnd(names.length)];
+        const others = names.filter(x => x !== T);
+        const k = 2 + rnd(3);
+        const pos = new Set();
+        while (pos.size < k) pos.add(rnd(9));
+        capTitle('Найдите все такие фигуры', 'Цвет не важен — смотрите на форму');
+        el.innerHTML = `<div class='cap-panel' style='display:flex;align-items:center;justify-content:space-between;margin-bottom:12px'><span class='cap-chip'>Образец</span>${capShape(T, 205, 36, 0)}</div><div class='grid grid-cols-3 gap-2.5'>${Array.from({ length: 9 }, (_, i) => `<button type='button' class='cap-tile' style='min-height:66px' data-i='${i}'>${capShape(pos.has(i) ? T : others[rnd(others.length)], [200, 265, 155, 25, 330, 45][rnd(6)], 32, rnd(5) * 9)}</button>`).join('')}</div><button type='button' id='capOk' class='cap-btn'>Проверить ${CAP_ARROW}</button>`;
+        const sel = new Set();
+        el.querySelectorAll('.cap-tile').forEach(btn => btn.onclick = () => {
+          playTactileFeedback('tap');
+          const i = +btn.dataset.i;
+          if (sel.has(i)) { sel.delete(i); btn.classList.remove('sel'); } else { sel.add(i); btn.classList.add('sel'); }
+        });
+        document.getElementById('capOk').onclick = () => {
+          const good = sel.size === pos.size && [...sel].every(i => pos.has(i));
+          if (good) captchaPass(); else captchaFail('Выбраны не все или лишние фигуры');
+        };
+      }
+    };
+
     function showToast(message) {
       const toast = document.getElementById('toastBanner');
       toast.textContent = message;
@@ -1661,6 +1927,7 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      initCaptcha();
       initUserProfile();
       initAuroraDust();
       renderGifts();
